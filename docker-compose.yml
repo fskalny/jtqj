@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  reverse-proxy:
+    build: 'reverse-proxy/'
+    restart: always
+    container_name: 'jtqj_reverse_proxy'
+    image: jtqj/reverse-proxy:latest
+    networks:
+      - jump-the-queue
+    ports:
+      - '8081:80'
+  java:
+    build: 'java/'
+    restart: always
+    container_name: 'jtqj_java'
+    image: jtqj/java:latest
+    networks:
+      - jump-the-queue
+networks:
+  jump-the-queue:
+    driver: bridge
