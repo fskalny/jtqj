@@ -26,8 +26,8 @@ pipeline{
         credentials(name: 'nexusCredentialsId', defaultValue: "nexus-technical-api", description: 'nexus credentials', credentialType: 'com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl')
         string(name: 'repository', defaultValue: 'maven-snapshots', description: 'maven repository')
         string(name: 'VERSION', defaultValue: '1.12.3-SNAPSHOT', description: 'Version number') 
-        string(name: 'EXTERNAL_SERVER_IP', defaultValue: 'CHANGE-ME', description: 'Server IP') 
-        string(name: 'APPLICATION_DIR', defaultValue: '/root/mythaistar/reverse-proxy/', description: 'My Thai Star application directory')
+        string(name: 'EXTERNAL_SERVER_IP', defaultValue: '10.40.235.254', description: 'Server IP') 
+        string(name: 'APPLICATION_DIR', defaultValue: '/root/jtqj/reverse-proxy/', description: 'My Thai Star application directory')
     }
 
     stages {
@@ -52,7 +52,7 @@ pipeline{
                     }
 
                     // Download the snapshot
-                    httpRequest authentication: nexusCredentialsId, ignoreSslErrors: true, outputFile: 'mythaistar.war', responseHandle: 'NONE', url: url
+                    httpRequest authentication: nexusCredentialsId, ignoreSslErrors: true, outputFile: 'jtqj-server-bootified.war', responseHandle: 'NONE', url: url
                 }
             }
         }
