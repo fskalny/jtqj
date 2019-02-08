@@ -23,15 +23,15 @@ pipeline{
     }
 
     stages {
-        stage ('Unit Tests') {
-            steps {
-                dir(javaDir) {
-                    withMaven(globalMavenSettingsConfig: globalSettingsId, maven: mavenInstallation, mavenOpts: '-Dmaven.test.failure.ignore=true') {
-                        sh "mvn clean test"
-                    }
-                }
-            }
-        }
+        //stage ('Unit Tests') {
+            //steps {
+                //dir(javaDir) {
+                    //withMaven(globalMavenSettingsConfig: globalSettingsId, maven: mavenInstallation, mavenOpts: '-Dmaven.test.failure.ignore=true') {
+                       // sh "mvn clean test"
+                   // }
+                //}
+            //}
+        //}
 
         stage ('SonarQube code analysis') {
             steps {
