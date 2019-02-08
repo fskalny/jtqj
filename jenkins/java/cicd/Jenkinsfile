@@ -9,7 +9,7 @@ pipeline{
 
     environment {
         // Directory with java project
-        javaDir = ''
+        javaDir = '/'
 
         // sonarQube
         // Name of the sonarQube environment
