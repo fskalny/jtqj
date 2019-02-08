@@ -23,21 +23,21 @@ pipeline{
     }
 
     stages {
-        //stage ('Unit Tests') {
-            //steps {
-                //dir(javaDir) {
-                    //withMaven(globalMavenSettingsConfig: globalSettingsId, maven: mavenInstallation, mavenOpts: '-Dmaven.test.failure.ignore=true') {
-                       // sh "mvn clean test"
-                   // }
-                //}
-            //}
-        //}
+        stage ('Unit Tests') {
+            steps {
+                dir(javaDir) {
+                    withMaven(globalMavenSettingsConfig: globalSettingsId, maven: mavenInstallation) {
+                        sh "mvn clean test"
+                    }
+                }
+            }
+        }
 
         stage ('SonarQube code analysis') {
             steps {
                 script {
                     dir(javaDir) {
-                        withMaven(globalMavenSettingsConfig: globalSettingsId, maven: mavenInstallation, mavenOpts: '-Dmaven.test.failure.ignore=true') {
+                        withMaven(globalMavenSettingsConfig: globalSettingsId, maven: mavenInstallation) {
                             withSonarQubeEnv(sonarEnv) {
                                 sh "mvn sonar:sonar"
                             }
@@ -56,7 +56,7 @@ pipeline{
         stage ('Deliver application into Nexus') {
             steps {
                 dir(javaDir) {
-                    withMaven(globalMavenSettingsConfig: globalSettingsId, maven: mavenInstallation, mavenOpts: '-Dmaven.test.failure.ignore=true') {
+                    withMaven(globalMavenSettingsConfig: globalSettingsId, maven: mavenInstallation) {
                         sh "mvn deploy -Dmaven.test.skip=true"
                     }
                 }
