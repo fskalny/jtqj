@@ -76,6 +76,7 @@
         <configuration>
           <excludedGroups>${devonfw.test.excluded.groups}</excludedGroups>
         </configuration>
+	      <version>2.21.0</version>
       </plugin>
 
       <!-- JaCoCo for test coverage -->
