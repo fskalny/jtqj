@@ -27,7 +27,7 @@ pipeline{
             steps {
                 dir(javaDir) {
                     withMaven(globalMavenSettingsConfig: globalSettingsId, maven: mavenInstallation) {
-                        sh "mvn clean test"
+                        sh "mvn clean test -X"
                     }
                 }
             }
